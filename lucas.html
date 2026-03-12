@@ -37,7 +37,34 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   max-height: 900px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow: hidden;
+  background: #1a2744;
+}
+
+/* ── HERO INNER CONTAINER (desktop fixed framing) ── */
+.hero-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .hero-inner {
+    max-width: 1440px;
+  }
+}
+
+/* Ultrawide (>1600px): soften edges with border-radius + shadow */
+@media (min-width: 1600px) {
+  .hero-inner {
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
 }
 
 /* Background photo fills the whole hero */
@@ -607,6 +634,7 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 
 <!-- ════════════════════════ DESKTOP ════════════════════════ -->
 <section class="hero-desktop">
+  <div class="hero-inner">
   <div class="hero-bg"></div>
 
   <!-- floating pill nav injected via JS below -->
@@ -671,6 +699,7 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
       <path d="M5 4C5 4 6 8.5 9 10C6 11.5 5 16 5 16C5 16 4 11.5 1 10C4 8.5 5 4 5 4Z" fill="white" fill-opacity="0.30"/>
     </svg>
   </div>
+  </div><!-- /.hero-inner -->
 </section>
 
 
