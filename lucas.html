@@ -39,8 +39,6 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  background: #1a2744;
-  padding-top: 90px;
 }
 
 /* ── HERO INNER CONTAINER (desktop fixed framing) ── */
@@ -52,7 +50,7 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border-radius: 28px 28px 0 0;
+  border-radius: 28px;
   background: #f0ede8;
 }
 
@@ -65,7 +63,7 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 /* Ultrawide (>1600px): soften edges with border-radius + shadow */
 @media (min-width: 1600px) {
   .hero-inner {
-    border-radius: 28px 28px 20px 20px;
+    border-radius: 28px;
     box-shadow: 0 8px 32px rgba(26, 39, 68, 0.10);
   }
 }
@@ -114,26 +112,51 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,0.35);
-  border-radius: 100px;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid transparent;
+  border-radius: 0;
   padding: 8px 8px 8px 16px;
-  box-shadow:
-    0 4px 24px rgba(26,39,68,0.10),
-    0 1px 4px rgba(26,39,68,0.05);
-  transition: box-shadow .4s ease, background .4s ease, border-color .4s ease;
-  max-width: 820px;
+  box-shadow: none;
+  transition: background .4s ease, border-color .4s ease, border-radius .4s ease, box-shadow .4s ease;
+  max-width: 900px;
   width: 100%;
+}
+
+/* STATE 2: floating pill (on scroll) */
+.pill-nav.nav-floating {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.50);
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Logo: visible in default, hidden in floating */
+.nav-logo {
+  height: 34px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  margin-right: 4px;
+  flex-shrink: 0;
+  opacity: 1;
+  transition: opacity .3s ease, max-width .3s ease, margin .3s ease;
+}
+.pill-nav.nav-floating .nav-logo {
+  opacity: 0;
+  max-width: 0;
+  margin-right: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 /* Logo no menu */
 
-.pill-nav:hover {
-  box-shadow:
-    0 8px 36px rgba(26,39,68,0.16),
-    0 2px 6px rgba(26,39,68,0.07);
+.pill-nav.nav-floating:hover {
+  box-shadow: 0 14px 40px rgba(26,39,68,0.14), 0 2px 6px rgba(26,39,68,0.07);
 }
 
 /* nav links center */
@@ -299,11 +322,11 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   z-index: 3;
   display: flex;
   flex-direction: column;
-  max-width: 640px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  background: rgba(255,255,255,0.38);
-  padding: 36px;
+  max-width: 620px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.28);
+  padding: 32px 36px;
   border-radius: 16px;
 }
 
@@ -336,9 +359,9 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 
 /* heading */
 .hero-h1 {
-  font-size: clamp(34px, 4vw, 56px);
+  font-size: clamp(32px, 3vw, 46px);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.025em;
   color: var(--text-dark);
   margin-bottom: 16px;
@@ -378,13 +401,14 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   display: inline-flex;
   align-items: center;
   gap: 14px;
+  height: 48px;
   background: #ffffff;
   color: #1F2E44;
   border: 1px solid rgba(0,0,0,0.08);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
-  padding: 14px 16px 14px 28px;
+  padding: 0 16px 0 22px;
   border-radius: 30px;
   letter-spacing: 0.01em;
   transition: all .25s ease;
@@ -412,11 +436,12 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255,255,255,0.82);
+  height: 48px;
+  background: rgba(255,255,255,0.85);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(26,39,68,0.10);
-  border-radius: 100px;
-  padding: 11px 20px;
+  border-radius: 30px;
+  padding: 0 18px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
@@ -2705,6 +2730,7 @@ function toggleTech(btn) {
 <!-- ════ FLOATING PILL NAVBAR ════ -->
 <div class="pill-nav-wrap" id="pillNavWrap">
   <nav class="pill-nav" role="navigation" aria-label="Navegação principal">
+    <img class="nav-logo" src="https://i.postimg.cc/nzqvVM1K/logo-horizontal-azul-1.png" alt="Dr. Lucas Burttet">
     <!-- links — desktop -->
     <div class="pill-links">
       <a href="#" class="active" data-section="inicio">Início</a>
@@ -2766,16 +2792,12 @@ document.addEventListener('click', e => {
 const sections = ['hero-desktop','treatments','jornada','dr-lucas','reviews-section','faq-section','blog-section'];
 const pillLinks = document.querySelectorAll('.pill-links a, .pill-mobile-menu a:not(.pill-menu-contact)');
 // Simple scroll listener to highlight first visible section
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('.pill-nav');
+window.addEventListener('scroll', function() {
+  var nav = document.querySelector('.pill-nav');
   if (window.scrollY > 80) {
-    nav.style.background = 'rgba(255,255,255,0.97)';
-    nav.style.borderColor = 'rgba(255,255,255,0.7)';
-    nav.style.boxShadow = '0 6px 32px rgba(26,39,68,0.18), 0 1px 6px rgba(26,39,68,0.08)';
+    nav.classList.add('nav-floating');
   } else {
-    nav.style.background = 'rgba(255,255,255,0.15)';
-    nav.style.borderColor = 'rgba(255,255,255,0.35)';
-    nav.style.boxShadow = '0 4px 24px rgba(26,39,68,0.10), 0 1px 4px rgba(26,39,68,0.05)';
+    nav.classList.remove('nav-floating');
   }
 }, { passive: true });
 </script>
