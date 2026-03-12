@@ -790,8 +790,8 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
             <line x1="1" y1="7" x2="13" y2="7" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <h3>Câncer de Próstata (Prostatectomia Robótica)</h3>
-        <p>Procedimento minimamente invasivo que permite remover a próstata com alta precisão, menor sangramento e melhor preservação da continência urinária e função sexual.</p>
+        <h3>Cálculo Renal (Pedra nos rins)</h3>
+        <p>O cálculo renal, popularmente conhecido como pedras nos rins, é uma condição dolorosa. O Dr. Lucas Burttet está à disposição para auxiliar pacientes que sofrem com o problema.</p>
       </div>
 
       <!-- Info Card 2 -->
@@ -802,8 +802,8 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
             <line x1="1" y1="7" x2="13" y2="7" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <h3>Tumores Renais (Nefrectomia Parcial ou Total Robótica)</h3>
-        <p>Cirurgia robótica para remoção parcial ou completa de tumores renais, preservando ao máximo o rim saudável e reduzindo riscos, dor e tempo de internação.</p>
+        <h3>Uro-oncologia (Câncer de Próstata, Rins e Outros)</h3>
+        <p>Membro Titular da Sociedade Brasileira de Urologia, o Dr. Lucas Burttet é especialista no tratamento de doenças benignas e malignas dos rins, próstata, bexiga, adrenais, pênis e testículos.</p>
       </div>
 
       <!-- Info Card 3 -->
@@ -814,8 +814,20 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
             <line x1="1" y1="7" x2="13" y2="7" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <h3>Câncer de Bexiga (Cistectomia / Procedimentos Robóticos)</h3>
-        <p>Tratamento de tumores da bexiga com abordagem minimamente invasiva, oferecendo melhor visualização, precisão e recuperação acelerada.</p>
+        <h3>Cirurgia Robótica e Laparoscópica</h3>
+        <p>O Dr. Lucas Burttet é especialista em Cirurgia por Laparoscopia e Cirurgia Robótica, garantindo um tratamento minimamente invasivo, mais preciso e seguro.</p>
+      </div>
+
+      <!-- Info Card 4 -->
+      <div class="info-card">
+        <div class="info-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <line x1="7" y1="1" x2="7" y2="13" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="1" y1="7" x2="13" y2="7" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Hiperplasia Prostática (Próstata Aumentada)</h3>
+        <p>Especialista em Urologia, o Dr. Lucas Burttet também realiza tratamentos relacionados à Hiperplasia Prostática, responsável por alterações no fluxo urinário.</p>
       </div>
 
     </div>
@@ -906,7 +918,7 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 /* ── INFO CARDS (top row) ── */
 .info-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin-bottom: 40px;
 }
@@ -1112,7 +1124,7 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   .treatments-inner { padding: 0 28px; }
   .treat-header { flex-direction: column; gap: 8px; }
   .treat-subtitle { max-width: 100%; padding-top: 0; }
-  .info-cards { grid-template-columns: 1fr; gap: 16px; }
+  .info-cards { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .image-cards { grid-template-columns: 1fr; gap: 20px; }
   .card { aspect-ratio: 1 / 1; }
 }
@@ -1120,6 +1132,7 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   .treatments { padding: 52px 0 0; }
   .treatments-inner { padding: 0 16px; }
   .treat-title { font-size: 22px; }
+  .info-cards { grid-template-columns: 1fr; }
   .info-card { padding: 20px; }
   .modal-box { padding: 28px 22px; }
 }
