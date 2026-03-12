@@ -39,7 +39,8 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  background: #f0ede8;
+  background: #1a2744;
+  padding-top: 90px;
 }
 
 /* ── HERO INNER CONTAINER (desktop fixed framing) ── */
@@ -51,6 +52,8 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  border-radius: 28px 28px 0 0;
+  background: #f0ede8;
 }
 
 @media (min-width: 1024px) {
@@ -62,7 +65,7 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 /* Ultrawide (>1600px): soften edges with border-radius + shadow */
 @media (min-width: 1600px) {
   .hero-inner {
-    border-radius: 0 0 20px 20px;
+    border-radius: 28px 28px 20px 20px;
     box-shadow: 0 8px 32px rgba(26, 39, 68, 0.10);
   }
 }
@@ -289,14 +292,19 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 
 /* ── HERO BODY ── */
 .hero-body {
-  position: relative;
-  z-index: 10;
-  flex: 1;
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 100px 56px 80px;
-  max-width: 560px;
+  max-width: 640px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.38);
+  padding: 36px;
+  border-radius: 16px;
 }
 
 /* eyebrow */
@@ -328,9 +336,9 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 
 /* heading */
 .hero-h1 {
-  font-size: clamp(30px, 3vw, 44px);
-  font-weight: 700;
-  line-height: 1.13;
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 600;
+  line-height: 1.15;
   letter-spacing: -0.025em;
   color: var(--text-dark);
   margin-bottom: 16px;
@@ -354,40 +362,50 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 }
 
 /* actions row */
-.hero-actions {
+.hero-topline {
+  white-space: nowrap;
+}
+.hero-cta {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
   animation: fadeUp .8s .28s both;
 }
 
 /* CTA */
-.btn-cta {
+.btn-agendar {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  background: var(--navy);
-  color: #fff;
+  background: #ffffff;
+  color: #1F2E44;
+  border: 1px solid rgba(0,0,0,0.08);
   text-decoration: none;
   font-size: 14px;
-  font-weight: 600;
-  padding: 15px 16px 15px 28px;
-  border-radius: 100px;
+  font-weight: 500;
+  padding: 14px 16px 14px 28px;
+  border-radius: 30px;
   letter-spacing: 0.01em;
-  box-shadow: 0 6px 24px rgba(26,39,68,0.28);
-  transition: all .3s cubic-bezier(.34,1.56,.64,1);
+  transition: all .25s ease;
 }
-.btn-cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 32px rgba(26,39,68,0.38); }
+.btn-agendar:hover {
+  background: #1F2E44;
+  color: #fff;
+  transform: translateY(-2px);
+}
 
 .btn-arrow-circle {
   width: 34px; height: 34px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.18);
+  background: rgba(31,46,68,0.12);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
+  transition: background .25s ease;
 }
-.btn-arrow-circle svg { width:14px; height:14px; fill:none; stroke:#fff; stroke-width:2.3; stroke-linecap:round; stroke-linejoin:round; }
+.btn-arrow-circle svg { width:14px; height:14px; fill:none; stroke:#1F2E44; stroke-width:2.3; stroke-linecap:round; stroke-linejoin:round; }
+.btn-agendar:hover .btn-arrow-circle { background: rgba(255,255,255,0.18); }
+.btn-agendar:hover .btn-arrow-circle svg { stroke: #fff; }
 
 /* Google badge */
 .google-badge {
@@ -641,16 +659,13 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 
   <div class="hero-body">
     <div class="eyebrow">
-      <span class="eyebrow-col">Urologia<br>Avançada</span>
+      <span class="eyebrow-col hero-topline">Urologia Avançada</span>
       <div class="eyebrow-sep"></div>
-      <span class="eyebrow-col">Cirurgia Robótica e<br>Uro-Oncologia</span>
+      <span class="eyebrow-col hero-topline">Cirurgia Robótica e Uro-Oncologia</span>
     </div>
 
-    <h1 class="hero-h1">
-      Tratamentos avançados<br>
-      para <em>câncer urológico</em><br>
-      com precisão<br>
-      minimamente invasiva.
+    <h1 class="hero-h1 hero-title">
+      Tratamentos avançados para <em>câncer urológico</em> com precisão minimamente invasiva.
     </h1>
 
     <p class="hero-sub">
@@ -658,8 +673,8 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
       10 anos em procedimentos minimamente invasivos.
     </p>
 
-    <div class="hero-actions">
-      <a href="#" class="btn-cta" onclick="event.preventDefault(); openWppModal()">
+    <div class="hero-cta">
+      <a href="#" class="btn-agendar" onclick="event.preventDefault(); openWppModal()">
         Agendar Avaliação
         <div class="btn-arrow-circle">
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
