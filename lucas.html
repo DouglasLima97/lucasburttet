@@ -1539,6 +1539,7 @@ document.addEventListener('keydown', e => {
 
     <!-- left -->
     <div class="faq-left faq-reveal">
+      <div class="faq-watermark"><img src="https://i.postimg.cc/hG6rPkRQ/simbolo-azul-claro-1.png" alt=""></div>
       <p class="faq-eyebrow">FAQ</p>
       <h2 class="faq-title">Perguntas<br>Frequentes</h2>
       <p class="faq-sub">Não encontrou a resposta? Nossa equipe está pronta para esclarecer suas dúvidas sobre nossos tratamentos.</p>
@@ -1714,17 +1715,24 @@ document.addEventListener('keydown', e => {
   position: relative;
   overflow: hidden;
 }
-.faq-section::before {
-  content: 'FAQ';
+
+.faq-left {
+  position: relative;
+}
+.faq-watermark {
   position: absolute;
-  left: -10px; top: 50%;
-  transform: translateY(-50%);
-  font-size: 240px; font-weight: 900;
-  color: rgba(26,39,68,0.035);
-  letter-spacing: -0.04em;
+  left: 0;
+  top: 40px;
+  opacity: 0.08;
   pointer-events: none;
-  font-family: 'Inter', sans-serif; line-height: 1;
   z-index: 0;
+}
+.faq-watermark img {
+  width: 420px;
+}
+.faq-left > *:not(.faq-watermark) {
+  position: relative;
+  z-index: 2;
 }
 .faq-inner {
   max-width: 1200px; margin: 0 auto; padding: 0 56px;
@@ -1809,7 +1817,6 @@ document.addEventListener('keydown', e => {
   .reviews-inner { padding: 0 20px; }
   .reviews-track .rev-card { flex: 0 0 88%; }
   .faq-inner { padding: 0 20px; }
-  .faq-section::before { font-size: 130px; }
 }
 </style>
 
