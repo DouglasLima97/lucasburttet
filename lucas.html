@@ -758,6 +758,18 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 
 <!-- ════════════════════════ TREATMENTS SECTION ════════════════════════ -->
 
+<!-- Treatment Modal -->
+<div class="modal-overlay" id="treatmentModalOverlay" onclick="closeTreatmentModal()">
+  <div class="modal-box treatment-modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeTreatmentModal()">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-tag" id="treatmentModalTag"></div>
+    <h2 class="modal-title" id="treatmentModalTitle"></h2>
+    <div class="modal-sections" id="treatmentModalSections"></div>
+  </div>
+</div>
+
 <!-- Modal -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
   <div class="modal-box" onclick="event.stopPropagation()">
@@ -784,50 +796,74 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 
       <!-- Info Card 1 -->
       <div class="info-card">
-        <div class="info-icon">
+        <div class="card-image">
+          <img src="/images/tratamento-1.jpg" alt="Cálculo Renal">
+        </div>
+        <div class="card-content">
+          <div class="info-icon">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <line x1="7" y1="1" x2="7" y2="13" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
             <line x1="1" y1="7" x2="13" y2="7" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
+          </div>
+          <h3>Cálculo Renal (Pedra nos rins)</h3>
+          <p>O cálculo renal, popularmente conhecido como pedras nos rins, é uma condição dolorosa. O Dr. Lucas Burttet está à disposição para auxiliar pacientes que sofrem com o problema.</p>
         </div>
-        <h3>Cálculo Renal (Pedra nos rins)</h3>
-        <p>O cálculo renal, popularmente conhecido como pedras nos rins, é uma condição dolorosa. O Dr. Lucas Burttet está à disposição para auxiliar pacientes que sofrem com o problema.</p>
+        <button class="card-cta" onclick="openTreatmentModal('Urologia','Cálculo Renal (Pedra nos rins)',[{heading:'O que é',text:'O cálculo renal é uma formação sólida de minerais e sais que se acumulam dentro dos rins. Pode variar de tamanho e afetar qualquer parte do trato urinário.'},{heading:'Sintomas',text:'Dor intensa nas costas e no flanco, sangue na urina, náusea, vômito e dificuldade para urinar são os principais sintomas.'},{heading:'Causas',text:'Desidratação, dieta rica em sódio e proteínas, histórico familiar, obesidade e certas condições médicas podem contribuir para o desenvolvimento de cálculos.'},{heading:'Tratamento',text:'O Dr. Lucas Burttet oferece tratamentos modernos como litotripsia, ureteroscopia e cirurgia minimamente invasiva para remoção dos cálculos.'}])">Saiba mais +</button>
       </div>
 
       <!-- Info Card 2 -->
       <div class="info-card">
-        <div class="info-icon">
+        <div class="card-image">
+          <img src="/images/tratamento-2.jpg" alt="Uro-oncologia">
+        </div>
+        <div class="card-content">
+          <div class="info-icon">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <line x1="7" y1="1" x2="7" y2="13" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
             <line x1="1" y1="7" x2="13" y2="7" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
+          </div>
+          <h3>Uro-oncologia (Câncer de Próstata, Rins e Outros)</h3>
+          <p>Membro Titular da Sociedade Brasileira de Urologia, o Dr. Lucas Burttet é especialista no tratamento de doenças benignas e malignas dos rins, próstata, bexiga, adrenais, pênis e testículos.</p>
         </div>
-        <h3>Uro-oncologia (Câncer de Próstata, Rins e Outros)</h3>
-        <p>Membro Titular da Sociedade Brasileira de Urologia, o Dr. Lucas Burttet é especialista no tratamento de doenças benignas e malignas dos rins, próstata, bexiga, adrenais, pênis e testículos.</p>
+        <button class="card-cta" onclick="openTreatmentModal('Uro-oncologia','Uro-oncologia (Câncer de Próstata, Rins e Outros)',[{heading:'O que é',text:'A uro-oncologia trata os cânceres do sistema urinário e reprodutor masculino, incluindo próstata, rins, bexiga, adrenais, pênis e testículos.'},{heading:'Sintomas',text:'Dificuldade para urinar, sangue na urina, dor óssea, perda de peso inexplicável e fadiga persistente podem ser sinais de alerta.'},{heading:'Causas',text:'Fatores genéticos, idade avançada, tabagismo, exposição a substâncias químicas e histórico familiar aumentam o risco de cânceres urológicos.'},{heading:'Tratamento',text:'O Dr. Lucas Burttet utiliza as mais modernas técnicas cirúrgicas robóticas e laparoscópicas para oferecer tratamentos precisos e com menor impacto na qualidade de vida.'}])">Saiba mais +</button>
       </div>
 
       <!-- Info Card 3 -->
       <div class="info-card">
-        <div class="info-icon">
+        <div class="card-image">
+          <img src="/images/tratamento-3.jpg" alt="Cirurgia Robótica">
+        </div>
+        <div class="card-content">
+          <div class="info-icon">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <line x1="7" y1="1" x2="7" y2="13" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
             <line x1="1" y1="7" x2="13" y2="7" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
+          </div>
+          <h3>Cirurgia Robótica e Laparoscópica</h3>
+          <p>O Dr. Lucas Burttet é especialista em Cirurgia por Laparoscopia e Cirurgia Robótica, garantindo um tratamento minimamente invasivo, mais preciso e seguro.</p>
         </div>
-        <h3>Cirurgia Robótica e Laparoscópica</h3>
-        <p>O Dr. Lucas Burttet é especialista em Cirurgia por Laparoscopia e Cirurgia Robótica, garantindo um tratamento minimamente invasivo, mais preciso e seguro.</p>
+        <button class="card-cta" onclick="openTreatmentModal('Cirurgia','Cirurgia Robótica e Laparoscópica',[{heading:'O que é',text:'A cirurgia robótica e laparoscópica são abordagens minimamente invasivas que utilizam pequenas incisões, câmeras e instrumentos de alta precisão para realizar procedimentos urológicos complexos.'},{heading:'Vantagens',text:'Menor sangramento, redução de dor pós-operatória, recuperação mais rápida, menor tempo de internação e resultados estéticos superiores em relação à cirurgia aberta.'},{heading:'Indicações',text:'Prostatectomia radical, nefrectomia parcial ou total, pieloplastia, cistectomia e diversas outras cirurgias urológicas podem ser realizadas por esta via.'},{heading:'Tecnologia',text:'O Dr. Lucas Burttet opera com o sistema robótico Da Vinci, referência mundial em cirurgia minimamente invasiva, garantindo precisão e segurança ao paciente.'}])">Saiba mais +</button>
       </div>
 
       <!-- Info Card 4 -->
       <div class="info-card">
-        <div class="info-icon">
+        <div class="card-image">
+          <img src="/images/tratamento-4.jpg" alt="Hiperplasia Prostática">
+        </div>
+        <div class="card-content">
+          <div class="info-icon">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <line x1="7" y1="1" x2="7" y2="13" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
             <line x1="1" y1="7" x2="13" y2="7" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
+          </div>
+          <h3>Hiperplasia Prostática (Próstata Aumentada)</h3>
+          <p>Especialista em Urologia, o Dr. Lucas Burttet também realiza tratamentos relacionados à Hiperplasia Prostática, responsável por alterações no fluxo urinário.</p>
         </div>
-        <h3>Hiperplasia Prostática (Próstata Aumentada)</h3>
-        <p>Especialista em Urologia, o Dr. Lucas Burttet também realiza tratamentos relacionados à Hiperplasia Prostática, responsável por alterações no fluxo urinário.</p>
+        <button class="card-cta" onclick="openTreatmentModal('Próstata','Hiperplasia Prostática (Próstata Aumentada)',[{heading:'O que é',text:'A hiperplasia prostática benigna (HPB) é o aumento não canceroso da próstata, comum em homens acima dos 50 anos, que pode comprimir a uretra e dificultar a micção.'},{heading:'Sintomas',text:'Jato urinário fraco, necessidade frequente de urinar (especialmente à noite), sensação de esvaziamento incompleto da bexiga e urgência urinária.'},{heading:'Causas',text:'O envelhecimento e as alterações hormonais associadas são os principais fatores. A hereditariedade e o estilo de vida também influenciam no desenvolvimento da HPB.'},{heading:'Tratamento',text:'Dependendo da gravidade, o tratamento pode ser medicamentoso ou cirúrgico. O Dr. Lucas Burttet oferece opções modernas como Urolift, vaporização a laser e ressecção transuretral da próstata.'}])">Saiba mais +</button>
       </div>
 
     </div>
@@ -926,10 +962,12 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
 .info-card {
   background: #ffffff;
   border-radius: 20px;
-  padding: 28px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
 .info-icon {
@@ -958,6 +996,86 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   color: #6b6b6b;
   margin: 0;
 }
+
+/* ── TREATMENT CARD: image + content + cta ── */
+.card-image {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.card-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.card-content {
+  padding: 24px 24px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.card-cta {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin: 0 24px;
+  padding: 0;
+  transition: opacity 0.35s ease, max-height 0.35s ease, padding 0.35s ease, margin-bottom 0.35s ease;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13.5px;
+  font-family: var(--font);
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+.card-cta:hover { background: #263a6e; }
+
+/* Desktop hover expand */
+.info-card:hover {
+  box-shadow: 0 8px 32px rgba(26,39,68,0.14);
+  transform: translateY(-2px);
+}
+.info-card:hover .card-image {
+  max-height: 220px;
+}
+.info-card:hover .card-cta {
+  opacity: 1;
+  max-height: 52px;
+  padding: 13px 20px;
+  margin-bottom: 22px;
+}
+
+/* ── TREATMENT MODAL sections ── */
+.modal-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: 55vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.modal-sections section h3 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-family: var(--font);
+}
+.modal-sections section p {
+  font-size: 14px;
+  color: #5a6a8a;
+  line-height: 1.8;
+  font-family: var(--font);
+}
+
 
 /* ── IMAGE CARDS (bottom row) ── */
 .image-cards {
@@ -1072,6 +1190,10 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   transition: transform .38s cubic-bezier(.34,1.4,.64,1);
   box-shadow: 0 24px 64px rgba(10,18,40,0.22);
 }
+.treatment-modal-box {
+  max-height: 88vh;
+  overflow-y: auto;
+}
 .modal-overlay.open .modal-box {
   transform: translateY(0) scale(1);
 }
@@ -1132,8 +1254,19 @@ body { font-family: var(--font); overflow-x: hidden; background: #1a2744; }
   .treatments { padding: 52px 0 0; }
   .treatments-inner { padding: 0 16px; }
   .treat-title { font-size: 22px; }
-  .info-cards { grid-template-columns: 1fr; }
-  .info-card { padding: 20px; }
+  .info-cards { display: flex; flex-direction: column; gap: 0; }
+  .info-card {
+    position: sticky;
+    margin-top: -40px;
+    box-shadow: 0 -4px 16px rgba(26,39,68,0.10);
+  }
+  .info-card:nth-child(1) { top: 56px; z-index: 1; margin-top: 0; }
+  .info-card:nth-child(2) { top: 72px; z-index: 2; }
+  .info-card:nth-child(3) { top: 88px; z-index: 3; }
+  .info-card:nth-child(4) { top: 104px; z-index: 4; }
+  .card-content { padding: 20px 20px 8px; }
+  .card-image { max-height: 200px !important; }
+  .card-cta { opacity: 1 !important; max-height: 52px !important; padding: 13px 20px !important; margin-bottom: 20px !important; }
   .modal-box { padding: 28px 22px; }
 }
 </style>
@@ -1150,7 +1283,23 @@ function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+function openTreatmentModal(tag, title, sections) {
+  document.getElementById('treatmentModalTag').textContent = tag;
+  document.getElementById('treatmentModalTitle').textContent = title;
+  const container = document.getElementById('treatmentModalSections');
+  container.innerHTML = sections.map(s =>
+    '<section><h3>' + s.heading + '</h3><p>' + s.text + '</p></section>'
+  ).join('');
+  document.getElementById('treatmentModalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeTreatmentModal() {
+  document.getElementById('treatmentModalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeTreatmentModal(); }
+});
 </script>
 
 
