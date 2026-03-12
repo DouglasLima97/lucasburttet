@@ -155,7 +155,10 @@ body { font-family: var(--font); overflow-x: hidden; background: #f0ede8; }
   border-radius: 0;
   padding: 8px 8px 8px 16px;
   box-shadow: none;
-  transition: background .4s ease, border-color .4s ease, border-radius .4s ease, box-shadow .4s ease;
+  transform: translateY(-6px);
+  opacity: 1;
+  transition: background .4s ease, border-color .4s ease, border-radius .4s ease,
+              box-shadow .4s ease, transform .35s ease, backdrop-filter .4s ease;
   max-width: 900px;
   width: 100%;
 }
@@ -168,6 +171,16 @@ body { font-family: var(--font); overflow-x: hidden; background: #f0ede8; }
   border: 1px solid rgba(255,255,255,0.50);
   border-radius: 40px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transform: translateY(0);
+}
+
+/* Hero background blur on scroll */
+.hero-bg.hero-blur {
+  filter: blur(2px) brightness(.92);
+  transition: filter .4s ease;
+}
+.hero-bg {
+  transition: filter .4s ease;
 }
 
 /* Logo: visible in default, hidden in floating */
@@ -2827,13 +2840,16 @@ document.addEventListener('click', e => {
 // Active link on scroll
 const sections = ['hero-desktop','treatments','jornada','dr-lucas','reviews-section','faq-section','blog-section'];
 const pillLinks = document.querySelectorAll('.pill-links a, .pill-mobile-menu a:not(.pill-menu-contact)');
-// Simple scroll listener to highlight first visible section
+// Scroll: floating nav + hero blur
+var _heroBg = document.querySelector('.hero-bg');
 window.addEventListener('scroll', function() {
   var nav = document.querySelector('.pill-nav');
   if (window.scrollY > 80) {
     nav.classList.add('nav-floating');
+    if (_heroBg) _heroBg.classList.add('hero-blur');
   } else {
     nav.classList.remove('nav-floating');
+    if (_heroBg) _heroBg.classList.remove('hero-blur');
   }
 }, { passive: true });
 </script>
