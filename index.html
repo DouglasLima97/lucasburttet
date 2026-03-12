@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>Lucas Burttet</title>
+  <style>
+    /* ========================================
+       RESET & BASE
+    ======================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      min-width: 1280px; /* Largura mínima fixa desktop */
+      overflow-x: hidden;
+    }
+
+    /* ========================================
+       HERO SECTION — Background fixo, sem
+       expansão/contração conforme resolução
+    ======================================== */
+    .hero {
+      /* Dimensões fixas para desktop */
+      width: 1280px;
+      height: 720px;
+
+      /* Centraliza a section no viewport */
+      margin: 0 auto;
+      position: relative;
+
+      /* Background fixo — não acompanha scroll,
+         não escala com a janela */
+      background-image: url('assets/hero-bg.jpg');
+      background-attachment: fixed;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 1280px 720px; /* tamanho fixo em px */
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Overlay escuro sobre o background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.50);
+      z-index: 1;
+    }
+
+    /* ========================================
+       HERO CONTENT — Headline e botões fixos,
+       sem redimensionamento responsivo
+    ======================================== */
+    .hero__content {
+      position: absolute;
+      /* Posição fixa em px — não usa % para não
+         variar conforme a resolução */
+      left: 120px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 640px; /* largura fixa */
+    }
+
+    .hero__eyebrow {
+      display: block;
+      font-size: 14px;         /* tamanho fixo em px */
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #e0b96a;
+      margin-bottom: 16px;
+    }
+
+    .hero__title {
+      font-size: 56px;         /* tamanho fixo em px */
+      font-weight: 800;
+      line-height: 1.1;
+      color: #ffffff;
+      margin-bottom: 24px;
+      white-space: nowrap;     /* impede quebra de linha por resize */
+    }
+
+    .hero__subtitle {
+      font-size: 18px;         /* tamanho fixo em px */
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.80);
+      margin-bottom: 40px;
+      width: 520px;            /* largura fixa para não reflow */
+    }
+
+    /* -------- Botões -------- */
+    .hero__actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: nowrap; /* sem quebra de linha */
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      /* Dimensões fixas em px */
+      height: 52px;
+      padding: 0 36px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      white-space: nowrap;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+
+    .btn--primary {
+      background: #e0b96a;
+      color: #0a0a0a;
+      border-color: #e0b96a;
+    }
+
+    .btn--primary:hover {
+      background: #c9a254;
+      border-color: #c9a254;
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .btn--outline:hover {
+      background: #ffffff;
+      color: #0a0a0a;
+    }
+
+    /* ========================================
+       CONTEÚDO ABAIXO DO HERO (exemplo)
+    ======================================== */
+    .section {
+      width: 1280px;
+      margin: 0 auto;
+      padding: 80px 120px;
+    }
+
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 16px;
+      color: #e0b96a;
+    }
+
+    .section p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.75);
+      max-width: 700px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero__content">
+      <span class="hero__eyebrow">Bem-vindo ao portfólio</span>
+
+      <h1 class="hero__title">Lucas Burttet</h1>
+
+      <p class="hero__subtitle">
+        Designer &amp; Desenvolvedor criativo apaixonado por experiências
+        digitais que conectam marcas e pessoas.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#projetos" class="btn btn--primary">Ver Projetos</a>
+        <a href="#contato"  class="btn btn--outline">Fale Comigo</a>
+      </div>
+    </div>
+  </section>
+  <!-- ================================================ -->
+
+  <!-- Exemplo de seção abaixo do hero -->
+  <section class="section" id="projetos">
+    <h2>Projetos</h2>
+    <p>
+      Conteúdo dos projetos será listado aqui. O hero acima permanece
+      com dimensões fixas de <strong>1280 × 720 px</strong>, background
+      em posição fixa e headline/botões sem escala responsiva.
+    </p>
+  </section>
+
+</body>
+</html>
