@@ -1328,7 +1328,6 @@ document.addEventListener('keydown', e => {
 
     <div class="about-content">
       <img class="doctor-logo" src="https://i.postimg.cc/P5Nrzc0r/logo-hero-mobile.png" alt="Dr. Lucas Burttet">
-      <h2>Dr. Lucas Burttet</h2>
       <p class="doctor-specialty">Urologista &bull; Uro-oncologista &bull; Cirurgia Rob&oacute;tica</p>
       <p class="doctor-description">
         Com mais de 10 anos de experi&ecirc;ncia em procedimentos rob&oacute;ticos,
@@ -1336,7 +1335,7 @@ document.addEventListener('keydown', e => {
         para tratamento de doen&ccedil;as urol&oacute;gicas complexas, proporcionando
         menor dor, menor sangramento e retorno mais r&aacute;pido &agrave;s atividades.
       </p>
-      <a href="#contato" class="doctor-cta">Agendar consulta</a>
+      <button class="doctor-cta open-consultation-modal" onclick="openWppModal()">Agendar consulta com Dr. Lucas</button>
     </div>
 
   </div>
@@ -1346,7 +1345,7 @@ document.addEventListener('keydown', e => {
 /* ══ ABOUT DOCTOR ══ */
 .about-doctor {
   background: #5E584F;
-  padding: 80px 0;
+  padding: 120px 40px;
   font-family: 'Inter', sans-serif;
 }
 .about-container {
@@ -1354,15 +1353,20 @@ document.addEventListener('keydown', e => {
   margin: 0 auto;
   padding: 0 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.9fr 1.1fr;
   gap: 60px;
   align-items: center;
 }
 .about-image img {
+  max-width: 420px;
   width: 100%;
   border-radius: 24px;
   object-fit: cover;
   display: block;
+  transition: transform 0.35s ease;
+}
+.about-image:hover img {
+  transform: scale(1.04);
 }
 .about-content {
   display: flex;
@@ -1371,17 +1375,12 @@ document.addEventListener('keydown', e => {
   color: #ffffff;
 }
 .doctor-logo {
-  width: 160px;
+  width: 260px;
   height: auto;
   object-fit: contain;
+  margin-bottom: 24px;
 }
-.about-content h2 {
-  font-size: 42px;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.15;
-  margin: 0;
-}
+
 .doctor-specialty {
   font-size: 15px;
   font-weight: 500;
@@ -1397,19 +1396,27 @@ document.addEventListener('keydown', e => {
   margin: 0;
 }
 .doctor-cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin-top: 8px;
-  padding: 14px 28px;
+  padding: 16px 28px;
   border-radius: 40px;
   background: #ffffff;
   color: #333333;
   text-decoration: none;
   font-weight: 600;
   font-size: 14.5px;
-  transition: background .2s ease, color .2s ease;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: all .25s ease;
   align-self: flex-start;
 }
-.doctor-cta:hover { background: #f0ede8; }
+.doctor-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
 @media (max-width: 768px) {
   .about-container {
     grid-template-columns: 1fr;
