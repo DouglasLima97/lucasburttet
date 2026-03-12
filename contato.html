@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contato — Dr. Lucas Burttet</title>
+<link rel="icon" type="image/png" href="https://i.postimg.cc/50YXqmN3/logo-hero-desktop-(1).png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --navy:#1a2744; --gold:#c9a452; --font:'Inter',sans-serif; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); overflow-x: hidden; background: #f0ede8; }
+.animate { opacity:0; transform:translateY(40px); transition:opacity .8s ease,transform .8s ease; }
+.animate-left  { opacity:0; transform:translateX(-60px); transition:opacity .8s ease,transform .8s ease; }
+.animate-right { opacity:0; transform:translateX(60px);  transition:opacity .8s ease,transform .8s ease; }
+.animate.show,.animate-left.show,.animate-right.show { opacity:1; transform:none; }
+
+/* PILL NAV */
+.pill-nav-wrap { position:fixed; top:0; left:0; right:0; z-index:1000; pointer-events:none; }
+.pill-nav { pointer-events:all; display:flex; align-items:center; gap:6px; position:absolute; top:28px; left:50%; transform:translateX(-50%) translateY(-8px); background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; border:1px solid transparent; border-radius:0; padding:8px 8px 8px 16px; box-shadow:none; max-width:900px; width:calc(100% - 40px); transition:background .35s,border-color .35s,border-radius .35s,box-shadow .35s,transform .35s,backdrop-filter .35s,padding .35s; }
+.pill-nav.nav-floating { position:fixed; top:20px; left:50%; transform:translateX(-50%) translateY(0); background:rgba(255,255,255,0.85); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.50); border-radius:40px; box-shadow:0 10px 30px rgba(0,0,0,0.08); padding:10px 26px; width:auto; }
+.pill-nav.nav-floating:hover { box-shadow:0 14px 40px rgba(26,39,68,0.14),0 2px 6px rgba(26,39,68,0.07); }
+.nav-logo { height:46px; width:auto; max-width:200px; object-fit:contain; display:block; margin-right:24px; flex-shrink:0; opacity:1; transition:opacity .3s,max-width .3s,margin .3s; }
+.pill-nav.nav-floating .nav-logo { opacity:0; max-width:0; margin-right:0; overflow:hidden; pointer-events:none; }
+.pill-links { display:flex; align-items:center; gap:4px; flex:1; }
+.pill-links a { text-decoration:none; font-family:var(--font); font-size:13.5px; font-weight:500; color:#1a2744; padding:8px 14px; border-radius:100px; letter-spacing:.01em; white-space:nowrap; transition:background .2s,color .2s; }
+.pill-links a:hover { background:rgba(26,39,68,0.08); }
+.pill-links a.active { background:rgba(26,39,68,0.10); font-weight:600; }
+.pill-actions { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.pill-btn-blog { font-family:var(--font); font-size:13.5px; font-weight:500; color:#1a2744; background:transparent; border:1.5px solid #d8d5cf; border-radius:100px; padding:9px 20px; cursor:pointer; text-decoration:none; transition:background .2s,border-color .2s; white-space:nowrap; }
+.pill-btn-blog:hover { background:#f5f3ef; border-color:#c0bdb7; }
+.pill-btn-contact { font-family:var(--font); font-size:13.5px; font-weight:600; color:#fff; background:#1a2744; border:none; border-radius:100px; padding:10px 22px; cursor:pointer; text-decoration:none; transition:background .25s,transform .2s,box-shadow .2s; white-space:nowrap; }
+.pill-btn-contact:hover,.pill-btn-contact.active-page { background:#253560; }
+.pill-btn-contact.active-page { box-shadow:0 0 0 2px rgba(26,39,68,0.3); }
+.pill-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; margin-left:auto; }
+.pill-hamburger span { display:block; width:20px; height:2px; background:#1a2744; border-radius:2px; transition:transform .3s,opacity .3s; }
+.pill-mobile-menu { display:none; position:fixed; top:78px; left:20px; right:20px; background:rgba(255,255,255,0.97); backdrop-filter:blur(20px); border-radius:20px; border:1px solid rgba(255,255,255,0.7); box-shadow:0 12px 40px rgba(26,39,68,0.16); z-index:999; padding:12px; flex-direction:column; gap:4px; }
+.pill-mobile-menu.open { display:flex; animation:menuDrop .25s cubic-bezier(.34,1.56,.64,1) both; }
+@keyframes menuDrop { from{opacity:0;transform:translateY(-12px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+.pill-mobile-menu a { font-family:var(--font); font-size:15px; font-weight:500; color:#1a2744; text-decoration:none; padding:13px 18px; border-radius:12px; transition:background .18s; }
+.pill-mobile-menu a:hover { background:#f0ede8; }
+.pill-mobile-menu .pill-menu-divider { height:1px; background:#eeebe6; margin:4px 0; }
+.pill-mobile-menu .pill-menu-contact { background:#1a2744; color:#fff; font-weight:600; text-align:center; border-radius:12px; margin-top:4px; }
+.pill-mobile-menu .pill-menu-contact:hover,.pill-mobile-menu .pill-menu-contact.active-page { background:#253560; }
+.pill-nav-title { display:none; font-family:var(--font); font-size:13.5px; font-weight:600; color:#1a2744; }
+@media (max-width:680px) { .pill-links,.pill-btn-blog,.pill-btn-contact { display:none; } .pill-hamburger { display:flex; } .pill-nav { padding:10px 18px; justify-content:space-between; } .pill-nav-title { display:block; } }
+@media (min-width:681px) { .pill-mobile-menu { display:none !important; } .pill-nav-title { display:none !important; } }
+
+/* PAGE HERO */
+.page-hero { background:var(--navy); padding:120px 0 80px; position:relative; overflow:hidden; }
+.page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 80% at 80% 50%, rgba(201,164,82,0.12) 0%, transparent 60%); pointer-events:none; }
+.page-hero-inner { max-width:1100px; margin:0 auto; padding:0 56px; text-align:center; }
+.page-hero-eyebrow { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); background:rgba(201,164,82,0.12); border:1px solid rgba(201,164,82,0.3); border-radius:100px; padding:5px 18px; margin-bottom:20px; }
+.page-hero-title { font-size:clamp(28px,3vw,52px); font-weight:700; color:#fff; line-height:1.15; letter-spacing:-.03em; margin-bottom:18px; }
+.page-hero-subtitle { font-size:17px; color:rgba(255,255,255,0.65); line-height:1.7; max-width:560px; margin:0 auto; }
+@media (max-width:860px) { .page-hero-inner { padding:0 28px; } .page-hero { padding:110px 0 64px; } }
+@media (max-width:480px) { .page-hero-inner { padding:0 20px; } }
+
+/* CONTACT SECTION */
+.contact-section { background:#f0ede8; padding:80px 0; }
+.contact-inner { max-width:1100px; margin:0 auto; padding:0 56px; }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+
+/* FORM */
+.contact-form-wrap { }
+.contact-form-title { font-size:22px; font-weight:700; color:var(--navy); letter-spacing:-.02em; margin-bottom:8px; }
+.contact-form-sub { font-size:14px; color:#7a8aaa; line-height:1.65; margin-bottom:32px; }
+.contact-form { display:flex; flex-direction:column; gap:14px; }
+.form-field { display:flex; flex-direction:column; gap:6px; }
+.form-label { font-size:12px; font-weight:600; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
+.form-input, .form-textarea {
+  width:100%; padding:13px 16px; border:1.5px solid #dde3f0; border-radius:10px;
+  font-size:14px; font-family:var(--font); color:var(--navy); background:#fff;
+  transition:border-color .2s,box-shadow .2s; outline:none; resize:vertical;
+}
+.form-input:focus, .form-textarea:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,164,82,0.15); }
+.form-input::placeholder, .form-textarea::placeholder { color:#9ba8bf; }
+.form-textarea { min-height:120px; }
+.form-submit {
+  width:100%; padding:15px 24px; margin-top:6px; background:var(--navy); color:#fff;
+  border:none; border-radius:100px; font-size:15px; font-weight:700; font-family:var(--font);
+  cursor:pointer; letter-spacing:.01em; box-shadow:0 6px 24px rgba(26,39,68,0.28);
+  transition:all .3s cubic-bezier(.34,1.56,.64,1);
+}
+.form-submit:hover { background:#253560; transform:translateY(-2px); box-shadow:0 10px 32px rgba(26,39,68,0.38); }
+
+/* MAP + CONTACT INFO */
+.contact-map-wrap { display:flex; flex-direction:column; gap:28px; }
+.contact-map-title { font-size:22px; font-weight:700; color:var(--navy); letter-spacing:-.02em; margin-bottom:8px; }
+.map-container {
+  width:100%; border-radius:16px; overflow:hidden;
+  box-shadow:0 8px 32px rgba(26,39,68,0.12); border:1px solid #e8e4dc;
+}
+.map-container iframe { width:100%; height:320px; border:0; display:block; }
+
+/* Contact info cards */
+.contact-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.contact-info-item {
+  background:#fff; border:1px solid #e8e4dc; border-radius:12px;
+  padding:16px 18px; display:flex; align-items:flex-start; gap:12px;
+  transition:box-shadow .3s,transform .3s; text-decoration:none;
+}
+.contact-info-item:hover { box-shadow:0 6px 20px rgba(26,39,68,0.08); transform:translateY(-2px); }
+.contact-info-icon {
+  width:36px; height:36px; border-radius:10px; background:rgba(201,164,82,0.12);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.contact-info-label { font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#9aabb8; margin-bottom:3px; }
+.contact-info-value { font-size:13.5px; font-weight:600; color:var(--navy); line-height:1.4; }
+.contact-address-full { background:#fff; border:1px solid #e8e4dc; border-radius:12px; padding:16px 18px; display:flex; align-items:flex-start; gap:12px; grid-column:1/-1; }
+
+@media (max-width:900px) {
+  .contact-inner { padding:0 28px; }
+  .contact-grid { grid-template-columns:1fr; gap:48px; }
+  .contact-section { padding:60px 0; }
+}
+@media (max-width:520px) {
+  .contact-inner { padding:0 20px; }
+  .contact-info-grid { grid-template-columns:1fr; }
+  .contact-address-full { grid-column:1; }
+}
+
+/* FOOTER */
+.site-footer { font-family:var(--font); background:#fff; }
+.footer-main { border-bottom:1px solid #e8e4dc; padding:60px 0 56px; }
+.footer-inner { max-width:1200px; margin:0 auto; padding:0 56px; display:flex; gap:48px; }
+.footer-brand { max-width:260px; flex-shrink:0; }
+.footer-logo { display:inline-block; margin-bottom:20px; }
+.footer-logo img { width:220px; opacity:.85; transition:opacity .2s; }
+.footer-logo img:hover { opacity:1; }
+.footer-tagline { font-size:13px; color:#6a7a9a; line-height:1.75; margin-bottom:16px; }
+.footer-crm { display:flex; align-items:center; gap:8px; font-size:12px; color:#9aabb8; }
+.footer-crm-sep { color:#c8c4bc; }
+.footer-spacer { flex:1; }
+.footer-col { flex-shrink:0; min-width:150px; }
+.footer-col-title { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#1a2744; margin-bottom:18px; }
+.footer-nav { display:flex; flex-direction:column; gap:10px; }
+.footer-nav a { font-size:13.5px; color:#6a7a9a; text-decoration:none; transition:color .2s; }
+.footer-nav a:hover { color:#c9a452; }
+.footer-contacts { display:flex; flex-direction:column; gap:12px; margin-bottom:18px; }
+.footer-contact-item { display:flex; align-items:center; gap:9px; font-size:13.5px; color:#6a7a9a; text-decoration:none; transition:color .2s; }
+.footer-contact-item:hover { color:#1a2744; }
+.footer-contact-wa:hover { color:#25D366; }
+.footer-location { display:flex; align-items:center; gap:7px; font-size:12.5px; color:#9aabb8; }
+.footer-bottom { padding:20px 0; }
+.footer-bottom-inner { max-width:1200px; margin:0 auto; padding:0 56px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#9aabb8; }
+.footer-dev a { color:#6a7a9a; text-decoration:none; }
+.footer-dev a:hover { color:#1a2744; }
+@media (max-width:900px) { .footer-inner { flex-wrap:wrap; padding:0 28px; gap:36px; } .footer-spacer { display:none; } .footer-bottom-inner { padding:0 28px; flex-direction:column; gap:8px; text-align:center; } }
+@media (max-width:480px) { .footer-inner,.footer-bottom-inner { padding:0 20px; } .footer-brand { max-width:100%; } }
+
+/* WPP */
+@keyframes wpp-pulse { 0%{box-shadow:0 0 0 0 rgba(37,211,102,0.55)} 70%{box-shadow:0 0 0 18px rgba(37,211,102,0)} 100%{box-shadow:0 0 0 0 rgba(37,211,102,0)} }
+.wpp-float-btn { position:fixed; bottom:28px; right:28px; width:58px; height:58px; background:#25D366; border:none; border-radius:50%; cursor:pointer; z-index:9999; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 28px rgba(37,211,102,0.4); transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s; padding:0; animation:wpp-pulse 2s infinite; }
+.wpp-float-btn:hover { transform:scale(1.12) translateY(-3px); animation:none; }
+.wpp-float-btn svg { width:28px; height:28px; }
+.wpp-modal-overlay { display:none; position:fixed; inset:0; background:rgba(10,18,40,0.62); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:10000; align-items:center; justify-content:center; padding:24px; opacity:0; transition:opacity .3s; }
+.wpp-modal-overlay.active { display:flex; opacity:1; }
+.wpp-modal-box { background:#fff; border-radius:20px; padding:40px 44px; max-width:480px; width:100%; position:relative; box-shadow:0 24px 64px rgba(10,18,40,0.22); transform:translateY(28px) scale(.97); transition:transform .38s cubic-bezier(.34,1.4,.64,1); font-family:var(--font); }
+.wpp-modal-overlay.active .wpp-modal-box { transform:translateY(0) scale(1); }
+.wpp-modal-close { position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%; background:#f0f2f7; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:#1a2744; font-size:18px; }
+.wpp-modal-close:hover { background:#e2e6f0; }
+.wpp-modal-tag { display:inline-block; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#c9a452; background:rgba(201,164,82,0.10); border:1px solid rgba(201,164,82,0.25); border-radius:100px; padding:5px 14px; margin-bottom:18px; }
+.wpp-modal-title { font-size:22px; font-weight:700; color:#1a2744; line-height:1.3; margin-bottom:6px; letter-spacing:-.015em; }
+.wpp-modal-sub { font-size:13px; color:#5a6a8a; margin-bottom:28px; line-height:1.6; }
+.wpp-modal-input { width:100%; padding:13px 16px; margin-bottom:12px; border:1.5px solid #dde3f0; border-radius:10px; font-size:14px; font-family:var(--font); color:#1a2744; background:#f9fafc; box-sizing:border-box; transition:border-color .2s,box-shadow .2s; outline:none; }
+.wpp-modal-input:focus { border-color:#c9a452; box-shadow:0 0 0 3px rgba(201,164,82,0.15); background:#fff; }
+.wpp-modal-input::placeholder { color:#9ba8bf; }
+.wpp-modal-submit { width:100%; padding:14px 24px; margin-top:4px; background:#1a2744; color:#fff; border:none; border-radius:100px; font-size:14px; font-weight:600; font-family:var(--font); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 6px 24px rgba(26,39,68,0.28); transition:all .3s cubic-bezier(.34,1.56,.64,1); }
+.wpp-modal-submit:hover { transform:translateY(-2px) scale(1.02); background:#253761; }
+@media (max-width:480px) { .wpp-modal-box { padding:28px 22px; } .wpp-float-btn { bottom:20px; right:20px; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner animate">
+    <p class="page-hero-eyebrow">Fale conosco</p>
+    <h1 class="page-hero-title">Entre em contato</h1>
+    <p class="page-hero-subtitle">Nossa equipe está pronta para auxiliar você. Agende sua consulta, tire dúvidas ou solicite informações sobre convênios e atendimento.</p>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<div class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-grid">
+
+      <!-- LEFT: FORM -->
+      <div class="contact-form-wrap animate-left">
+        <h2 class="contact-form-title">Envie uma mensagem</h2>
+        <p class="contact-form-sub">Preencha o formulário abaixo e entraremos em contato em breve.</p>
+        <form class="contact-form" onsubmit="handleContactForm(event)">
+          <div class="form-field">
+            <label class="form-label" for="c-nome">Nome</label>
+            <input class="form-input" type="text" id="c-nome" name="nome" placeholder="Seu nome completo" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="c-email">Email</label>
+            <input class="form-input" type="email" id="c-email" name="email" placeholder="seu@email.com" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="c-telefone">Telefone</label>
+            <input class="form-input" type="tel" id="c-telefone" name="telefone" placeholder="(51) 9 9999-9999" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="c-mensagem">Mensagem</label>
+            <textarea class="form-textarea" id="c-mensagem" name="mensagem" placeholder="Descreva brevemente o motivo do contato..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Enviar mensagem</button>
+        </form>
+      </div>
+
+      <!-- RIGHT: MAP + INFO -->
+      <div class="contact-map-wrap animate-right">
+        <h2 class="contact-map-title">Localização</h2>
+
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.7!2d-51.2!3d-30.02!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRua+Dr.+Vale%2C+555+sala+306%2C+Floresta%2C+Porto+Alegre+-+RS!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Localização Dr. Lucas Burttet — Rua Dr. Vale, 555, sala 306, Floresta, Porto Alegre">
+          </iframe>
+        </div>
+
+        <div class="contact-info-grid">
+
+          <a href="tel:+5551997751557" class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18" stroke="#c9a452" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">Telefone</div>
+              <div class="contact-info-value">(51) 99775-1557</div>
+            </div>
+          </a>
+
+          <a href="https://instagram.com/drlucasburttet" target="_blank" rel="noopener" class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18" stroke="#c9a452" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">Instagram</div>
+              <div class="contact-info-value">@drlucasburttet</div>
+            </div>
+          </a>
+
+          <a href="#" onclick="event.preventDefault();openWppModal()" class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 448 512" width="18" height="18" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">WhatsApp</div>
+              <div class="contact-info-value">(51) 99775-1557</div>
+            </div>
+          </a>
+
+          <div class="contact-info-item contact-address-full" style="text-decoration:none;">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18" stroke="#c9a452" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">Endereço</div>
+              <div class="contact-info-value">Rua Dr. Vale, 555 — sala 306<br>Floresta, Porto Alegre – RS</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="https://i.postimg.cc/nzqvVM1K/logo-horizontal-azul-1.png" alt="Dr. Lucas Burttet"></div>
+        <p class="footer-tagline">Atendimento em urologia, uro-oncologia e procedimentos minimamente invasivos, com foco em precisão, segurança e acompanhamento humanizado.</p>
+        <div class="footer-crm"><span>CRM RS – 31326</span><span class="footer-crm-sep">·</span><span>RQE – 25208</span></div>
+      </div>
+      <div class="footer-spacer"></div>
+      <div class="footer-col">
+        <p class="footer-col-title">Acesso rápido</p>
+        <nav class="footer-nav">
+          <a href="lucas.html">Início</a>
+          <a href="dr-lucas-burttet.html">Sobre o Dr. Lucas</a>
+          <a href="cirurgia-robotica.html">Cirurgia Robótica</a>
+          <a href="uro-oncologia.html">Uro-Oncologia</a>
+          <a href="sua-jornada.html">Sua Jornada</a>
+          <a href="#" onclick="event.preventDefault();openWppModal()">Agendar consulta</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Contatos</p>
+        <div class="footer-contacts">
+          <a href="tel:+5551997751557" class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" width="15" height="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (51) 99775-1557
+          </a>
+          <a href="https://instagram.com/drlucasburttet" target="_blank" rel="noopener" class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" width="15" height="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @drlucasburttet
+          </a>
+          <a href="#" onclick="event.preventDefault();openWppModal()" class="footer-contact-item footer-contact-wa">
+            <svg viewBox="0 0 448 512" width="15" height="15" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="footer-location">
+          <svg viewBox="0 0 24 24" fill="none" width="14" height="14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Porto Alegre – RS
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span>© Dr. Lucas Burttet 2026. Todos os direitos reservados.</span>
+      <span class="footer-dev">Desenvolvido por: <a href="https://www.361agenciadigital.com.br/" target="_blank" rel="noopener">361 Agência Digital</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- NAV — Contato active on the contact button -->
+<div class="pill-nav-wrap" id="pillNavWrap">
+  <nav class="pill-nav" role="navigation" aria-label="Navegação principal">
+    <img src="https://i.postimg.cc/nzqvVM1K/logo-horizontal-azul-1.png" alt="Dr. Lucas Burttet" class="nav-logo">
+    <div class="pill-links">
+      <a href="lucas.html">Início</a>
+      <a href="dr-lucas-burttet.html">Dr. Lucas Burttet</a>
+      <a href="cirurgia-robotica.html">Cirurgia Robótica</a>
+      <a href="uro-oncologia.html">Uro-Oncologia</a>
+      <a href="sua-jornada.html">Sua Jornada</a>
+    </div>
+    <div class="pill-actions">
+      <a href="#" class="pill-btn-blog">Blog</a>
+      <a href="contato.html" class="pill-btn-contact active-page">Contato</a>
+    </div>
+    <span class="pill-nav-title">Dr. Lucas Burttet</span>
+    <button class="pill-hamburger" id="pillHamburger" aria-label="Menu" aria-expanded="false" onclick="togglePillMenu()">
+      <span id="hb1"></span><span id="hb2"></span><span id="hb3"></span>
+    </button>
+  </nav>
+</div>
+<div class="pill-mobile-menu" id="pillMobileMenu">
+  <a href="lucas.html" onclick="closePillMenu()">Início</a>
+  <a href="dr-lucas-burttet.html" onclick="closePillMenu()">Dr. Lucas Burttet</a>
+  <a href="cirurgia-robotica.html" onclick="closePillMenu()">Cirurgia Robótica</a>
+  <a href="uro-oncologia.html" onclick="closePillMenu()">Uro-Oncologia</a>
+  <a href="sua-jornada.html" onclick="closePillMenu()">Sua Jornada</a>
+  <div class="pill-menu-divider"></div>
+  <a href="#" onclick="closePillMenu()">Blog</a>
+  <a href="contato.html" class="pill-menu-contact active-page" onclick="closePillMenu()">Contato</a>
+</div>
+
+<!-- WPP -->
+<button class="wpp-float-btn" onclick="openWppModal()" aria-label="Falar no WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#ffffff"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</button>
+<div class="wpp-modal-overlay" id="wppModalOverlay">
+  <div class="wpp-modal-box" onclick="event.stopPropagation()">
+    <button class="wpp-modal-close" onclick="closeWppModal()">&#x2715;</button>
+    <div class="wpp-modal-tag">Atendimento</div>
+    <h3 class="wpp-modal-title">Fale com nossa equipe</h3>
+    <p class="wpp-modal-sub">Preencha seus dados para entrar em contato diretamente pelo WhatsApp.</p>
+    <input class="wpp-modal-input" type="text" id="wpp-nome" placeholder="Seu nome completo" />
+    <input class="wpp-modal-input" type="tel" id="wpp-telefone" placeholder="WhatsApp (ex: 51999999999)" />
+    <input class="wpp-modal-input" type="email" id="wpp-email" placeholder="Seu e-mail" />
+    <button class="wpp-modal-submit" onclick="submitWppForm()">Continuar para WhatsApp</button>
+  </div>
+</div>
+
+<script>
+function togglePillMenu(){const m=document.getElementById('pillMobileMenu'),b=document.getElementById('pillHamburger'),o=m.classList.toggle('open');b.setAttribute('aria-expanded',String(o));document.getElementById('hb1').style.transform=o?'translateY(7px) rotate(45deg)':'';document.getElementById('hb2').style.opacity=o?'0':'';document.getElementById('hb3').style.transform=o?'translateY(-7px) rotate(-45deg)':'';}
+function closePillMenu(){document.getElementById('pillMobileMenu').classList.remove('open');document.getElementById('pillHamburger').setAttribute('aria-expanded','false');['hb1','hb2','hb3'].forEach(id=>document.getElementById(id).style='');}
+document.addEventListener('click',e=>{const w=document.getElementById('pillNavWrap'),m=document.getElementById('pillMobileMenu');if(!w.contains(e.target)&&!m.contains(e.target))closePillMenu();});
+window.addEventListener('scroll',function(){var n=document.querySelector('.pill-nav');if(window.scrollY>80)n.classList.add('nav-floating');else n.classList.remove('nav-floating');},{passive:true});
+
+function handleContactForm(e) {
+  e.preventDefault();
+  var nome=document.getElementById('c-nome').value.trim();
+  var email=document.getElementById('c-email').value.trim();
+  var telefone=document.getElementById('c-telefone').value.trim();
+  var mensagem=document.getElementById('c-mensagem').value.trim();
+  var wppMsg='Olá! Me chamo '+nome+'. Entrei em contato pelo site. Tel: '+telefone+'. E-mail: '+email+'. Mensagem: '+mensagem;
+  window.open('https://api.whatsapp.com/send?phone=5551997751557&text='+encodeURIComponent(wppMsg),'_blank');
+}
+
+(function(){
+  var TENANT_ID="59cbe396-b4f3-4b69-91bb-b7df41eebc2e",WEBHOOK_URL="https://saas-n8n.wp1vlq.easypanel.host/webhook/web_botton_wpp",MSG="Olá! Vim do site do Dr. Lucas Burttet e gostaria de mais informações.",WPP="5551997751557";
+  window.openWppModal=function(){var o=document.getElementById('wppModalOverlay');o.style.display='flex';requestAnimationFrame(function(){o.classList.add('active');});};
+  window.closeWppModal=function(){var o=document.getElementById('wppModalOverlay');o.classList.remove('active');setTimeout(function(){o.style.display='none';},300);};
+  window.submitWppForm=function(){var n=document.getElementById('wpp-nome').value.trim(),t=document.getElementById('wpp-telefone').value.trim().replace(/\D/g,''),e=document.getElementById('wpp-email').value.trim();if(!n||!t||!e){alert('Por favor, preencha todos os campos.');return;}fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tenant_id:TENANT_ID,lead:{nome:n,telefone:t,email:e},mensagem:MSG,timestamp:new Date().toISOString()})}).then(function(){window.open('https://api.whatsapp.com/send?phone='+WPP+'&text='+encodeURIComponent(MSG),'_blank');closeWppModal();}).catch(function(){window.open('https://api.whatsapp.com/send?phone='+WPP+'&text='+encodeURIComponent(MSG),'_blank');closeWppModal();});};
+  document.getElementById('wppModalOverlay').addEventListener('click',function(e){if(e.target===this)closeWppModal();});
+})();
+
+(function(){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}});},{threshold:0.15});document.querySelectorAll('.animate,.animate-left,.animate-right').forEach(function(el){obs.observe(el);});})();
+</script>
+</body>
+</html>
